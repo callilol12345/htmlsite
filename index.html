@@ -6,7 +6,6 @@
   <meta name="description" content="Künstliche Intelligenz im Alltag: Anwendungen, Chancen, Risiken und ein Blick in die Zukunft.">
   <title>KI im Alltag | Chancen & Herausforderungen</title>
   <link rel="stylesheet" href="style.css">
-  <script src="theme.js" defer></script>
   <script src="script.js" defer></script>
   <script src="newsfeed.js" defer></script>
   <script src="embed.js" defer></script>
@@ -25,7 +24,6 @@
         <span class="sr-only">Menü öffnen</span>
         <span></span><span></span><span></span>
       </button>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Dunkles Design aktivieren"><span class="theme-toggle-label">Dunkel</span></button>
       <div class="nav-links" id="nav-links">
         <a href="#grundlagen">KI im Alltag</a>
         <a href="#alltag">Im Alltag</a>
@@ -72,21 +70,6 @@
           <span class="node node-three"></span><span class="node node-four"></span>
         </div>
       </div>
-      <aside class="hero-newsfeed" id="newsfeed" data-newsfeed role="region" aria-roledescription="Karussell" aria-labelledby="newsfeed-heading">
-        <p id="newsfeed-heading" class="hero-feed-label"><span aria-hidden="true"></span> KI im Alltag · Feed</p>
-        <div class="hero-feed-meta"><span data-feed-type>Realer Use Case</span><span data-feed-date>Schule & Studium</span></div>
-        <p class="hero-feed-category" data-feed-category>Lernen</p>
-        <h2 data-feed-title>KI unterstützt beim Lernen – aber nicht beim Abschreiben.</h2>
-        <p class="hero-feed-text" data-feed-text>Chatbots können Lernfragen erklären, Übungen vorbereiten und beim Strukturieren helfen.</p>
-        <p class="hero-feed-relevance"><strong>Alltagsbezug:</strong> <span data-feed-relevance>Viele Schülerinnen, Schüler und Studierende nutzen solche Werkzeuge bereits beim Vorbereiten und Wiederholen.</span></p>
-        <a class="hero-feed-source" data-feed-source href="https://www.kmk.org/aktuelles/pressearchiv/mitteilung/bildungsministerkonferenz-verabschiedet-handlungsempfehlung-zum-umgang-mit-kuenstlicher-intelligenz-1.html" target="_blank" rel="noopener">Quelle öffnen <span aria-hidden="true">↗</span></a>
-        <div class="hero-feed-controls">
-          <button class="hero-feed-button" type="button" data-feed-previous aria-label="Vorherigen Feed-Beitrag anzeigen"><span aria-hidden="true">←</span><span>Zurück</span></button>
-          <button class="hero-feed-button" type="button" data-feed-next aria-label="Nächsten Feed-Beitrag anzeigen"><span>Weiter</span><span aria-hidden="true">→</span></button>
-        </div>
-        <div class="hero-feed-progress" aria-hidden="true"><span data-feed-progress></span></div>
-        <p class="sr-only" data-feed-status aria-live="polite"></p>
-      </aside>
     </section>
 
     <section class="section intro" id="grundlagen">
@@ -178,6 +161,29 @@
           <article class="local-card reveal"><span>01</span><h3>Auf dem Schulweg</h3><p>Eine Karten-App schlägt vor dem Losfahren eine Route vor, warnt bei Stau und hilft beim Vergleich von Fußweg, Fahrrad oder Bus und Bahn.</p></article>
           <article class="local-card reveal"><span>02</span><h3>Zu Hause</h3><p>Per Sprachbefehl einen Timer beim Kochen stellen, Musik starten oder für den nächsten Morgen an einen Termin erinnern lassen.</p></article>
           <article class="local-card reveal"><span>03</span><h3>Für Schule & Freizeit</h3><p>Ein Chatbot kann beim Strukturieren einer Präsentation helfen oder Bildideen liefern. Fakten, Quellen und Kennzeichnung bleiben eigene Aufgaben.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section newsfeed" id="newsfeed" aria-labelledby="newsfeed-heading">
+      <div class="container">
+        <div class="section-heading section-heading-light reveal">
+          <div><p class="section-kicker">Aktuell · KI im Alltag</p><h2>Reale Beispiele, die <span>weiterlaufen.</span></h2></div>
+          <p>Der Feed zeigt reale KI-Nutzung und überprüfte Beiträge. Quellen werden erst geöffnet, wenn du sie bewusst auswählst.</p>
+        </div>
+        <div class="newsfeed-shell reveal" data-newsfeed role="region" aria-roledescription="Karussell" aria-labelledby="newsfeed-heading">
+          <p id="newsfeed-heading" class="newsfeed-label"><span aria-hidden="true"></span> KI im Alltag · Feed</p>
+          <div class="newsfeed-item" aria-atomic="true">
+            <div class="newsfeed-meta"><span class="newsfeed-type" data-feed-type>Realer Use Case</span><span data-feed-date>Schule & Studium</span></div>
+            <p class="newsfeed-category" data-feed-category>Lernen</p>
+            <h3 data-feed-title>KI unterstützt beim Lernen – aber nicht beim Abschreiben.</h3>
+            <p class="newsfeed-text" data-feed-text>Chatbots können Lernfragen erklären, Übungen vorbereiten und beim Strukturieren helfen.</p>
+            <p class="newsfeed-relevance"><strong>Alltagsbezug:</strong> <span data-feed-relevance>Viele Schülerinnen, Schüler und Studierende nutzen solche Werkzeuge bereits beim Vorbereiten und Wiederholen.</span></p>
+            <a class="newsfeed-source" data-feed-source href="https://www.kmk.org/aktuelles/pressearchiv/mitteilung/bildungsministerkonferenz-verabschiedet-handlungsempfehlung-zum-umgang-mit-kuenstlicher-intelligenz-1.html" target="_blank" rel="noopener">Quelle öffnen <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="newsfeed-controls"><button class="newsfeed-button" type="button" data-feed-previous aria-label="Vorherigen Feed-Beitrag anzeigen"><span aria-hidden="true">←</span><span>Zurück</span></button><button class="newsfeed-button" type="button" data-feed-next aria-label="Nächsten Feed-Beitrag anzeigen"><span>Weiter</span><span aria-hidden="true">→</span></button></div>
+          <div class="newsfeed-progress" aria-hidden="true"><span data-feed-progress></span></div>
+          <p class="sr-only" data-feed-status aria-live="polite"></p>
         </div>
       </div>
     </section>
