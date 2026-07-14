@@ -1,6 +1,37 @@
 const mediaStatus = document.querySelector('.media-status');
 const mediaCards = document.querySelectorAll('.media-card[data-provider][data-embed-url]');
 
+const takeaways = {
+  'Project Astra sieht und hört mit': 'Kernaussage: Künftige Assistenten könnten nicht nur antworten, sondern eine reale Situation mitsehen und einordnen.',
+  'Eine Fahrt ohne Fahrer buchen': 'Kernaussage: Autonome Fahrten sind keine Theorie mehr, aber bislang regional begrenzte Angebote mit hohen Sicherheitsanforderungen.',
+  'Study Mode statt fertiger Lösung': 'Kernaussage: Beim Lernen kann KI sinnvoller sein, wenn sie Rückfragen stellt, statt nur eine fertige Antwort auszugeben.',
+  'Text wird zu Bild, Video und Audio': 'Kernaussage: KI kann Entwürfe beschleunigen, ersetzt aber weder kreative Entscheidungen noch die Prüfung von Herkunft und Rechten.',
+  'ChatGPT Study Mode': 'Kernaussage: Ein Chatbot kann beim Üben helfen, sollte aber keine ungeprüfte Lösung oder Quelle ersetzen.',
+  'Stimme im vernetzten Zuhause': 'Kernaussage: Sprachsteuerung spart kleine Handgriffe, funktioniert aber nur mit passenden Einstellungen und bewusstem Datenschutz.',
+  'Verkehr vorhersagen, Route anpassen': 'Kernaussage: Eine Route ist eine hilfreiche Prognose – Verkehrszeichen und die Situation vor Ort gelten immer zuerst.',
+  'Von der Idee zur Gestaltung': 'Kernaussage: Generative KI hilft beim ersten Entwurf, die Auswahl und Kennzeichnung bleiben menschliche Aufgaben.',
+  'KI-gestützte Medizinprodukte': 'Kernaussage: Medizinische KI kann Hinweise geben; Diagnose und Verantwortung bleiben beim Fachpersonal.'
+};
+
+const everydayBalances = {
+  'KI-Chatbots': ['Beim Lernen und Schreiben hilft KI beim Strukturieren, Erklären und Formulieren.', 'Fakten, Quellen und persönliche Daten müssen vor der Nutzung kritisch geprüft werden.'],
+  'Sprachassistenten': ['Timer, Erinnerungen und Smart-Home-Befehle sind praktisch, wenn Hände oder Blick frei bleiben sollen.', 'Mikrofonrechte, gespeicherte Aufnahmen und verknüpfte Konten sollten bewusst eingestellt werden.'],
+  'Navigation': ['Routenvergleich und Verkehrshinweise helfen beim Planen von Schulweg, Termin oder Ausflug.', 'Standortdaten sind sensibel; Verkehrsschilder und die Lage vor Ort sind wichtiger als jede App-Empfehlung.'],
+  'Bildgeneratoren': ['Für Präsentationen, Plakate und Moodboards werden Ideen und Varianten schnell sichtbar.', 'Künstlich erzeugte Bilder müssen gekennzeichnet werden; Urheberrecht und Täuschung bleiben wichtige Fragen.'],
+  'KI in der Medizin': ['KI kann Fachpersonal beim Sichten von Bildern und Daten unterstützen.', 'Gesundheitsdaten brauchen besonderen Schutz, und medizinische Entscheidungen dürfen nicht automatisch fallen.'],
+  'Autonomes Fahren': ['Fahrerassistenz und Robotaxis können Mobilität erleichtern und einzelne Fahraufgaben übernehmen.', 'Autonome Dienste sind regional begrenzt und müssen in ungewöhnlichen Situationen nachweisbar sicher handeln.']
+};
+
+function addEverydayBalance() {
+  const title = document.title.split('|')[0].trim();
+  const text = everydayBalances[title];
+  const target = document.querySelector('.practice-section');
+  if (!text || !target || document.querySelector('.everyday-balance')) return;
+  target.insertAdjacentHTML('beforebegin', `<section class="everyday-balance"><div class="container"><article><p class="balance-tag">Das hilft im Alltag</p><h3>Chance</h3><p>${text[0]}</p></article><article><p class="balance-tag">Darauf achten</p><h3>Risiko & Verantwortung</h3><p>${text[1]}</p></article></div></section>`);
+}
+
+addEverydayBalance();
+
 function announce(message) {
   if (mediaStatus) mediaStatus.textContent = message;
 }
@@ -66,6 +97,16 @@ mediaCards.forEach(card => {
   const button = card.querySelector('.load-embed');
   const preview = card.querySelector('.media-preview');
   if (!button || !preview) return;
+
+  const title = card.querySelector('h3')?.textContent.trim();
+  const copy = card.querySelector('.media-copy');
+  if (title && takeaways[title] && copy && !copy.querySelector('.media-takeaway')) {
+    const takeaway = document.createElement('p');
+    takeaway.className = 'media-takeaway';
+    takeaway.innerHTML = `<strong>Kernaussage:</strong> ${takeaways[title].replace('Kernaussage: ', '')}`;
+    const privacy = copy.querySelector('.privacy-note');
+    privacy ? privacy.before(takeaway) : copy.appendChild(takeaway);
+  }
 
   button.addEventListener('click', () => {
     if (card.classList.contains('is-loading') || card.classList.contains('is-loaded')) return;
