@@ -118,8 +118,8 @@ if (feedRoot) {
     if (!reduceMotion) startTimer(false);
   }
 
-  elements.previous.addEventListener('click', () => showItem(currentIndex - 1, true));
-  elements.next.addEventListener('click', () => showItem(currentIndex + 1, true));
+  elements.previous.addEventListener('click', () => { isPaused = false; showItem(currentIndex - 1, true); });
+  elements.next.addEventListener('click', () => { isPaused = false; showItem(currentIndex + 1, true); });
   feedRoot.addEventListener('mouseenter', () => { isHovering = true; });
   feedRoot.addEventListener('mouseleave', () => { isHovering = false; });
   feedRoot.addEventListener('focusin', pauseForFocus);
