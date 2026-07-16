@@ -79,10 +79,26 @@ function renderQuestion() {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'answer';
+    button.dataset.answer = answer;
     button.textContent = answer;
     button.addEventListener('click', () => selectAnswer(answer));
     answersElement.appendChild(button);
   });
+}
+
+function markAnswer(button, state) {
+  if (!button) return;
+  const isCorrect = state === 'correct';
+  const label = isCorrect ? 'Richtig' : 'Falsch';
+  button.classList.add(state);
+  button.dataset.state = state;
+  button.setAttribute('aria-label', `${button.dataset.answer}. ${label}.`);
+
+  const status = document.createElement('span');
+  status.className = 'answer-status';
+  status.setAttribute('aria-hidden', 'true');
+  status.textContent = isCorrect ? '✓ Richtig' : '✕ Falsch';
+  button.appendChild(status);
 }
 
 function showFeedback(status, item) {
@@ -116,15 +132,16 @@ function selectAnswer(answer) {
   answered = true;
   const item = quiz[current];
   const buttons = [...answersElement.querySelectorAll('.answer')];
+  const selectedButton = buttons.find(button => button.dataset.answer === answer);
   buttons.forEach(button => {
     button.disabled = true;
-    if (button.textContent === item.correct) button.classList.add('correct');
+    if (button.dataset.answer === item.correct) markAnswer(button, 'correct');
   });
   if (answer === item.correct) {
     score += 1;
     showFeedback('correct', item);
   } else {
-    buttons.find(button => button.textContent === answer).classList.add('wrong');
+    markAnswer(selectedButton, 'wrong');
     showFeedback('wrong', item);
   }
   nextButton.disabled = false;
